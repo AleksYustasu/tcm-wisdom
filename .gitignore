@@ -1,0 +1,6 @@
+node_modules/
+.claude/
+icons/generate-icons.js
+icons/gen.js
+icons/generate.html
+package-lock.json

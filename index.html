@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TCM Wisdom</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2D5016">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TCM Wisdom">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Language button & modal */
+.lang-fab{position:fixed;bottom:80px;right:16px;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--primary,#2D5016);color:#fff;border:none;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.2);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lang-modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(44,44,44,.5);backdrop-filter:blur(4px);z-index:300;align-items:center;justify-content:center;padding:24px}
+.lang-modal{background:#FAF6EE;border-radius:16px;padding:24px;max-width:360px;width:100%;max-height:80vh;overflow-y:auto;position:relative}
+.lang-modal h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;color:#2C2C2C;text-align:center}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lang-btn{padding:10px 12px;border:1.5px solid #D4C8B8;border-radius:8px;background:#fff;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;text-align:left;transition:all .2s}
+.lang-btn:hover{border-color:#7A9E5F;background:rgba(45,80,22,.04)}
+.lang-btn.active{border-color:#2D5016;background:rgba(45,80,22,.08);font-weight:600;color:#2D5016}
+.lang-close{position:absolute;top:12px;right:12px;background:none;border:none;font-size:24px;color:#6B5344;cursor:pointer}
+@media(display-mode:standalone){.lang-fab{bottom:90px}}
+</style>
+</head>
+<body>
+<!-- ============================================ -->
+<!-- PHONE FRAME WRAPPER                          -->
+<!-- ============================================ -->
+<div class="prototype-wrapper">
+  <div class="prototype-header">
+    <h1 class="proto-title">TCM Wisdom</h1>
+    <p class="proto-subtitle">High-Fidelity Interactive Prototype &bull; 8 Screens</p>
+    <div class="screen-nav">
+      <button class="screen-nav-btn active" data-target="onboarding">1. Onboarding</button>
+      <button class="screen-nav-btn" data-target="profile">2. Profile</button>
+      <button class="screen-nav-btn" data-target="home">3. Home</button>
+      <button class="screen-nav-btn" data-target="symptoms">4. Symptoms</button>
+      <button class="screen-nav-btn" data-target="diagnosis">5. Diagnosis</button>
+      <button class="screen-nav-btn" data-target="formula">6. Formula</button>
+      <button class="screen-nav-btn" data-target="history">7. History</button>
+      <button class="screen-nav-btn" data-target="disclaimer">8. Disclaimer</button>
+    </div>
+  </div>
+
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">
+
+      <!-- ======== SCREEN 1: ONBOARDING ======== -->
+      <div class="screen active" id="screen-onboarding">
+        <div class="onboarding-container">
+          <!-- Slide 1 -->
+          <div class="onboarding-slide active" id="ob-slide-1">
+            <div class="ob-skip">
+              <button class="skip-btn" onclick="goToScreen('disclaimer')">Skip</button>
+            </div>
+            <div class="ob-illustration">
+              <div class="yinyang-container">
+                <svg viewBox="0 0 200 200" class="yinyang-svg">
+                  <circle cx="100" cy="100" r="98" fill="none" stroke="#2D5016" stroke-width="1.5" opacity="0.3"/>
+                  <path d="M100 2 A98 98 0 0 1 100 198 A49 49 0 0 1 100 100 A49 49 0 0 0 100 2" fill="#2D5016" class="yin-half"/>
+                  <path d="M100 2 A98 98 0 0 0 100 198 A49 49 0 0 0 100 100 A49 49 0 0 1 100 2" fill="#F5ECD7" class="yang-half"/>
+                  <circle cx="100" cy="51" r="10" fill="#F5ECD7" class="yang-dot"/>
+                  <circle cx="100" cy="149" r="10" fill="#2D5016" class="yin-dot"/>
+                </svg>
+                <div class="qi-lines">
+                  <div class="qi-line q1"></div>
+                  <div class="qi-line q2"></div>
+                  <div class="qi-line q3"></div>
+                </div>
+              </div>
+            </div>
+            <h1 class="ob-title">Balance Begins Within</h1>
+            <p class="ob-text">Traditional Chinese Medicine has guided wellness for over 2,000 years through the harmony of Yin and Yang — opposing forces that sustain all life.</p>
+            <div class="ob-decoration">
+              <span class="chinese-accent">陰陽平衡</span>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="onboarding-slide" id="ob-slide-2">
+            <div class="ob-skip">
+              <button class="skip-btn" onclick="goToScreen('disclaimer')">Skip</button>
+            </div>
+            <div class="ob-illustration">
+              <div class="five-elements-wheel">
+                <svg viewBox="0 0 260 260" class="elements-svg">
+                  <!-- Pentagon connecting lines -->
+                  <polygon points="130,25 235,100 210,215 50,215 25,100" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.4"/>
+                  <!-- Element circles -->
+                  <g class="element-node wood">
+                    <circle cx="130" cy="25" r="28" fill="#4A7C2E" opacity="0.15"/>
+                    <circle cx="130" cy="25" r="22" fill="#4A7C2E" opacity="0.9"/>
+                    <text x="130" y="22" text-anchor="middle" fill="white" font-size="9" font-family="Inter" font-weight="600">木</text>
+                    <text x="130" y="33" text-anchor="middle" fill="white" font-size="7" font-family="Inter">WOOD</text>
+                  </g>
+                  <g class="element-node fire">
+                    <circle cx="235" cy="100" r="28" fill="#C44B2B" opacity="0.15"/>
+                    <circle cx="235" cy="100" r="22" fill="#C44B2B" opacity="0.9"/>
+                    <text x="235" y="97" text-anchor="middle" fill="white" font-size="9" font-family="Inter" font-weight="600">火</text>
+                    <text x="235" y="108" text-anchor="middle" fill="white" font-size="7" font-family="Inter">FIRE</text>
+                  </g>
+                  <g class="element-node earth">
+                    <circle cx="210" cy="215" r="28" fill="#C8A96E" opacity="0.15"/>
+                    <circle cx="210" cy="215" r="22" fill="#C8A96E" opacity="0.9"/>
+                    <text x="210" y="212" text-anchor="middle" fill="white" font-size="9" font-family="Inter" font-weight="600">土</text>
+                    <text x="210" y="223" text-anchor="middle" fill="white" font-size="7" font-family="Inter">EARTH</text>
+                  </g>
+                  <g class="element-node metal">
+                    <circle cx="50" cy="215" r="28" fill="#8B8B8B" opacity="0.15"/>
+                    <circle cx="50" cy="215" r="22" fill="#8B8B8B" opacity="0.9"/>
+                    <text x="50" y="212" text-anchor="middle" fill="white" font-size="9" font-family="Inter" font-weight="600">金</text>
+                    <text x="50" y="223" text-anchor="middle" fill="white" font-size="7" font-family="Inter">METAL</text>
+                  </g>
+                  <g class="element-node water">
+                    <circle cx="25" cy="100" r="28" fill="#2B5EA7" opacity="0.15"/>
+                    <circle cx="25" cy="100" r="22" fill="#2B5EA7" opacity="0.9"/>
+                    <text x="25" y="97" text-anchor="middle" fill="white" font-size="9" font-family="Inter" font-weight="600">水</text>
+                    <text x="25" y="108" text-anchor="middle" fill="white" font-size="7" font-family="Inter">WATER</text>
+                  </g>
+                  <!-- Organ labels -->
+                  <text x="130" y="62" text-anchor="middle" fill="#6B5344" font-size="8" font-family="Inter">Liver · Gallbladder</text>
+                  <text x="215" y="80" text-anchor="middle" fill="#6B5344" font-size="8" font-family="Inter">Heart · S. Intestine</text>
+                  <text x="210" y="250" text-anchor="middle" fill="#6B5344" font-size="8" font-family="Inter">Spleen · Stomach</text>
+                  <text x="50" y="250" text-anchor="middle" fill="#6B5344" font-size="8" font-family="Inter">Lung · L. Intestine</text>
+                  <text x="42" y="80" text-anchor="middle" fill="#6B5344" font-size="8" font-family="Inter">Kidney · Bladder</text>
+                </svg>
+              </div>
+            </div>
+            <h1 class="ob-title">The Five Elements</h1>
+            <p class="ob-text">Wood, Fire, Earth, Metal, and Water — each element governs specific organs and emotions, creating a web of interconnected health.</p>
+            <div class="ob-decoration">
+              <span class="chinese-accent">五行學說</span>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="onboarding-slide" id="ob-slide-3">
+            <div class="ob-skip">
+              <button class="skip-btn" onclick="goToScreen('disclaimer')">Skip</button>
+            </div>
+            <div class="ob-illustration">
+              <div class="qi-flow-container">
+                <div class="qi-body-outline">
+                  <svg viewBox="0 0 160 240" class="body-svg">
+                    <ellipse cx="80" cy="30" rx="22" ry="28" fill="none" stroke="#2D5016" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="80" y1="58" x2="80" y2="150" stroke="#2D5016" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="80" y1="75" x2="35" y2="130" stroke="#2D5016" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="80" y1="75" x2="125" y2="130" stroke="#2D5016" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="80" y1="150" x2="50" y2="230" stroke="#2D5016" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="80" y1="150" x2="110" y2="230" stroke="#2D5016" stroke-width="1.5" opacity="0.6"/>
+                    <!-- Qi flow particles -->
+                    <circle r="3" fill="#7A9E5F" opacity="0.8" class="qi-particle p1">
+                      <animateMotion dur="3s" repeatCount="indefinite" path="M80,58 Q60,90 80,120 Q100,140 80,150"/>
+                    </circle>
+                    <circle r="3" fill="#B85C38" opacity="0.8" class="qi-particle p2">
+                      <animateMotion dur="4s" repeatCount="indefinite" path="M80,75 Q55,95 35,130"/>
+                    </circle>
+                    <circle r="2.5" fill="#C8A96E" opacity="0.8" class="qi-particle p3">
+                      <animateMotion dur="3.5s" repeatCount="indefinite" path="M80,75 Q105,95 125,130"/>
+                    </circle>
+                    <circle r="3" fill="#7A9E5F" opacity="0.6" class="qi-particle p4">
+                      <animateMotion dur="4.5s" repeatCount="indefinite" path="M80,150 Q65,190 50,230"/>
+                    </circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <h1 class="ob-title">What is Qi?</h1>
+            <p class="ob-text">Qi (氣) is the vital energy flowing through your body's meridians. When Qi flows freely, health thrives. When blocked, symptoms arise.</p>
+            <button class="btn-primary btn-cta" onclick="goToScreen('disclaimer')">
+              Start My Assessment
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <!-- Dots & Navigation -->
+          <div class="ob-footer">
+            <div class="ob-dots">
+              <span class="dot active" data-slide="1"></span>
+              <span class="dot" data-slide="2"></span>
+              <span class="dot" data-slide="3"></span>
+            </div>
+            <button class="ob-next-btn" id="ob-next">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======== SCREEN 2: USER PROFILE SETUP ======== -->
+      <div class="screen" id="screen-profile">
+        <div class="screen-header">
+          <button class="back-btn" onclick="goToScreen('onboarding')">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <h2 class="header-title">Your Profile</h2>
+          <div class="header-spacer"></div>
+        </div>
+        <div class="screen-body scroll-area">
+          <div class="profile-intro">
+            <div class="profile-avatar">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="19" stroke="#7A9E5F" stroke-width="1.5" fill="#F5ECD7"/>
+                <circle cx="20" cy="15" r="6" fill="#7A9E5F" opacity="0.7"/>
+                <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="#7A9E5F" opacity="0.3"/>
+              </svg>
+            </div>
+            <p class="profile-intro-text">Tell us about yourself so we can personalize your TCM experience.</p>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Enter your name" value="Sarah Chen">
+          </div>
+
+          <div class="form-row">
+            <div class="form-section half">
+              <label class="form-label">Age</label>
+              <input type="number" class="form-input" placeholder="Age" value="42">
+            </div>
+            <div class="form-section half">
+              <label class="form-label">Biological Sex</label>
+              <div class="select-wrapper">
+                <select class="form-select">
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label">Known Allergies</label>
+            <div class="tag-input-container">
+              <span class="tag">Shellfish <button class="tag-remove">&times;</button></span>
+              <span class="tag">Pollen <button class="tag-remove">&times;</button></span>
+              <input type="text" class="tag-input" placeholder="Type to add...">
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label">Current Medications</label>
+            <div class="medication-input">
+              <input type="text" class="form-input" placeholder="e.g., Lisinopril 10mg" value="Metformin 500mg">
+              <button class="upload-btn" title="Upload photo of medications">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="9" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="divider-brush"></div>
+
+          <div class="form-section">
+            <label class="form-label">Quick Constitution Quiz</label>
+            <p class="form-hint">Answer 3 questions to determine your baseline constitution type.</p>
+
+            <div class="quiz-card">
+              <p class="quiz-q">1. Do you tend to feel cold or warm?</p>
+              <div class="quiz-options">
+                <label class="quiz-option selected">
+                  <input type="radio" name="q1" checked>
+                  <span class="quiz-radio"></span>
+                  <span>Often feel cold</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1">
+                  <span class="quiz-radio"></span>
+                  <span>Usually comfortable</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1">
+                  <span class="quiz-radio"></span>
+                  <span>Often feel warm</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-card">
+              <p class="quiz-q">2. How are your energy levels?</p>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q2">
+                  <span class="quiz-radio"></span>
+                  <span>Often fatigued</span>
+                </label>
+                <label class="quiz-option selected">
+                  <input type="radio" name="q2" checked>
+                  <span class="quiz-radio"></span>
+                  <span>Variable throughout day</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2">
+                  <span class="quiz-radio"></span>
+                  <span>Generally energetic</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-card">
+              <p class="quiz-q">3. How would you describe your digestion?</p>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q3">
+                  <span class="quiz-radio"></span>
+                  <span>Slow, heavy feeling</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3">
+                  <span class="quiz-radio"></span>
+                  <span>Generally smooth</span>
+                </label>
+                <label class="quiz-option selected">
+                  <input type="radio" name="q3" checked>
+                  <span class="quiz-radio"></span>
+                  <span>Fast or irregular</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-primary full-width" onclick="goToScreen('home')">
+            Save Profile
+          </button>
+          <div class="bottom-spacer"></div>
+        </div>
+      </div>
+
+      <!-- ======== SCREEN 3: HOME DASHBOARD ======== -->
+      <div class="screen" id="screen-home">
+        <div class="screen-body scroll-area home-screen">
+          <!-- Status bar area -->
+          <div class="home-header">
+            <div class="home-greeting">
+              <p class="greeting-time">Good morning,</p>
+              <h1 class="greeting-name">Sarah.</h1>
+              <p class="greeting-qi">How is your Qi today?</p>
+            </div>
+            <div class="home-avatar">
+              <div class="avatar-circle">
+                <span>SC</span>
+              </div>
+              <div class="breathing-ring"></div>
+            </div>
+          </div>
+
+          <!-- Constitution Summary Card -->
+          <div class="card constitution-card">
+            <div class="card-header-row">
+              <div class="card-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="#C8A96E" opacity="0.8"/>
+                </svg>
+              </div>
+              <div>
+                <p class="card-label">Current Pattern</p>
+                <h3 class="card-value">Liver Qi Stagnation</h3>
+              </div>
+              <span class="card-badge">Moderate</span>
+            </div>
+            <div class="constitution-bar">
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 65%"></div>
+              </div>
+              <div class="bar-labels">
+                <span>Deficient</span>
+                <span>Balanced</span>
+                <span>Excess</span>
+              </div>
+            </div>
+            <p class="card-note">Last assessed: March 15, 2026</p>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+            <button class="action-card" onclick="goToScreen('symptoms')">
+              <div class="action-icon" style="background: rgba(45,80,22,0.1)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 4v16m-8-8h16" stroke="#2D5016" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span class="action-label">New Assessment</span>
+            </button>
+            <button class="action-card" onclick="goToScreen('formula')">
+              <div class="action-icon" style="background: rgba(184,92,56,0.1)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 3h6v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V3zM7 9l-2 12h14L17 9" stroke="#B85C38" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M10 14h4M12 12v4" stroke="#B85C38" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="action-label">My Formulas</span>
+            </button>
+            <button class="action-card" onclick="goToScreen('history')">
+              <div class="action-icon" style="background: rgba(200,169,110,0.1)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#C8A96E" stroke-width="1.5" fill="none"/><path d="M12 7v5l3 3" stroke="#C8A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="action-label">History</span>
+            </button>
+          </div>
+
+          <!-- Seasonal Tip -->
+          <div class="card seasonal-card">
+            <div class="seasonal-header">
+              <span class="seasonal-icon">🌱</span>
+              <div>
+                <p class="card-label">Spring Season Tip</p>
+                <p class="seasonal-season">Wood Element · Liver & Gallbladder</p>
+              </div>
+            </div>
+            <div class="divider-thin"></div>
+            <p class="seasonal-text">Spring is the season of the Liver. Support smooth Qi flow with sour foods like lemon and vinegar. Gentle stretching and walks in nature help release stagnation that accumulated over winter.</p>
+            <div class="seasonal-herbs">
+              <span class="herb-chip">Chrysanthemum Tea</span>
+              <span class="herb-chip">Goji Berries</span>
+              <span class="herb-chip">Mint</span>
+            </div>
+          </div>
+
+          <!-- Meridian decoration -->
+          <div class="meridian-decoration">
+            <svg width="100%" height="40" viewBox="0 0 320 40" preserveAspectRatio="none">
+              <path d="M0,20 Q40,5 80,20 Q120,35 160,20 Q200,5 240,20 Q280,35 320,20" fill="none" stroke="#7A9E5F" stroke-width="1" opacity="0.2"/>
+              <path d="M0,20 Q40,10 80,20 Q120,30 160,20 Q200,10 240,20 Q280,30 320,20" fill="none" stroke="#C8A96E" stroke-width="0.5" opacity="0.15"/>
+            </svg>
+          </div>
+
+          <div class="bottom-spacer-nav"></div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+          <button class="nav-item active">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 8.5L11 2l8 6.5V19a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 20v-7h6v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Home</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('symptoms')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v6M11 14v6M2 11h6M14 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="11" cy="11" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span>Assess</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('formula')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8 2h6v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V2z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6 8l-1.5 11h13L16 8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span>Formulas</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('history')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M11 6v5l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>History</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('profile')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 20c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span>Profile</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ======== SCREEN 4: SYMPTOM SELECTION ======== -->
+      <div class="screen" id="screen-symptoms">
+        <div class="screen-header">
+          <button class="back-btn" onclick="goToScreen('home')">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <h2 class="header-title">Symptom Assessment</h2>
+          <div class="header-spacer"></div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="wizard-progress">
+          <div class="progress-track">
+            <div class="progress-fill" id="symptom-progress" style="width: 25%"></div>
+          </div>
+          <div class="progress-steps">
+            <span class="step-label active">Systems</span>
+            <span class="step-label">Details</span>
+            <span class="step-label">Tongue</span>
+            <span class="step-label">Pulse</span>
+          </div>
+        </div>
+
+        <div class="screen-body scroll-area">
+          <!-- Step 1: Body Systems -->
+          <div class="wizard-step active" id="symptom-step-1">
+            <p class="wizard-instruction">Select all body systems you'd like to assess:</p>
+            <div class="system-grid">
+              <label class="system-card selected">
+                <input type="checkbox" checked>
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4c-4 0-7 3-7 6 0 2 1 3 2 4l5 10 5-10c1-1 2-2 2-4 0-3-3-6-7-6z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </div>
+                <span class="system-name">Digestion</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card selected">
+                <input type="checkbox" checked>
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14c0-2 2-4 4-4 1 0 2 0 3 1l1 1 1-1c1-1 2-1 3-1 2 0 4 2 4 4 0 5-8 10-8 10s-8-5-8-10z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </div>
+                <span class="system-name">Sleep</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M14 5v4M14 19v4M5 14h4M19 14h4M8 8l2.5 2.5M17.5 17.5L20 20M8 20l2.5-2.5M17.5 10.5L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span class="system-name">Energy</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card selected">
+                <input type="checkbox" checked>
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="11" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 10.5c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zM17 10.5c0-.3.2-.5.5-.5s.5.2.5.5-.2.5-.5.5-.5-.2-.5-.5zM11 14c1.5 1.5 4.5 1.5 6 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span class="system-name">Mood</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M7 14l3-6 4 12 4-12 3 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+                <span class="system-name">Pain</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v4M10 8c-2 2-3 5-3 8 0 4 3 6 7 6s7-2 7-6c0-3-1-6-3-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+                </div>
+                <span class="system-name">Respiration</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="14" cy="14" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </div>
+                <span class="system-name">Reproduction</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M10 5h8v3c0 3-2 5-4 7-2-2-4-4-4-7V5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 18h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span class="system-name">Urination</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M7 10c1-4 3-6 7-6s6 2 7 6c1 4-1 8-3 11-1 2-3 3-4 3s-3-1-4-3c-2-3-4-7-3-11z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </div>
+                <span class="system-name">Skin</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+              <label class="system-card">
+                <input type="checkbox">
+                <div class="system-icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="12" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="11" cy="11" r="1.5" fill="currentColor"/><circle cx="17" cy="11" r="1.5" fill="currentColor"/><path d="M10 22h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span class="system-name">Head & Senses</span>
+                <span class="system-check">&#10003;</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 2: Symptom Detail (shown on click "Next") -->
+          <div class="wizard-step" id="symptom-step-2">
+            <p class="wizard-instruction">Describe your digestive symptoms:</p>
+
+            <div class="detail-card">
+              <h4 class="detail-title">Bloating after meals</h4>
+              <div class="slider-group">
+                <label class="slider-label">Intensity</label>
+                <div class="custom-slider">
+                  <div class="slider-track">
+                    <div class="slider-fill" style="width: 60%"></div>
+                    <div class="slider-thumb" style="left: 60%"></div>
+                  </div>
+                  <div class="slider-labels">
+                    <span>1</span><span>2</span><span class="active">3</span><span>4</span><span>5</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-group">
+                <label class="slider-label">Duration</label>
+                <div class="duration-pills">
+                  <span class="pill">Acute (&lt;2 wks)</span>
+                  <span class="pill active">Chronic (&gt;2 wks)</span>
+                </div>
+              </div>
+              <div class="slider-group">
+                <label class="slider-label">Time Pattern</label>
+                <div class="time-pills">
+                  <span class="pill active">Morning worse</span>
+                  <span class="pill">Evening worse</span>
+                  <span class="pill">Constant</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h4 class="detail-title">Irregular appetite</h4>
+              <div class="slider-group">
+                <label class="slider-label">Intensity</label>
+                <div class="custom-slider">
+                  <div class="slider-track">
+                    <div class="slider-fill" style="width: 40%"></div>
+                    <div class="slider-thumb" style="left: 40%"></div>
+                  </div>
+                  <div class="slider-labels">
+                    <span>1</span><span class="active">2</span><span>3</span><span>4</span><span>5</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-group">
+                <label class="slider-label">Duration</label>
+                <div class="duration-pills">
+                  <span class="pill">Acute (&lt;2 wks)</span>
+                  <span class="pill active">Chronic (&gt;2 wks)</span>
+                </div>
+              </div>
+              <div class="slider-group">
+                <label class="slider-label">Time Pattern</label>
+                <div class="time-pills">
+                  <span class="pill">Morning worse</span>
+                  <span class="pill">Evening worse</span>
+                  <span class="pill active">Constant</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Tongue Assessment -->
+          <div class="wizard-step" id="symptom-step-3">
+            <p class="wizard-instruction">Tongue assessment helps identify internal patterns.</p>
+
+            <div class="tongue-upload-area">
+              <div class="upload-box">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="2" y="8" width="36" height="28" rx="4" stroke="#7A9E5F" stroke-width="1.5" fill="none"/><circle cx="20" cy="22" r="6" stroke="#7A9E5F" stroke-width="1.5" fill="none"/><circle cx="20" cy="22" r="2" fill="#7A9E5F"/><path d="M14 8V6a2 2 0 012-2h8a2 2 0 012 2v2" stroke="#7A9E5F" stroke-width="1.5"/></svg>
+                <p class="upload-text">Tap to take tongue photo</p>
+                <p class="upload-hint">AI will analyze color, coating & shape</p>
+              </div>
+              <div class="divider-or"><span>or assess manually</span></div>
+            </div>
+
+            <div class="tongue-manual">
+              <div class="tongue-group">
+                <label class="form-label">Tongue Color</label>
+                <div class="tongue-options">
+                  <label class="tongue-opt selected">
+                    <span class="tongue-swatch" style="background: #F5C5C5"></span>
+                    <span>Pale</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #E88B98"></span>
+                    <span>Pink</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #CC3344"></span>
+                    <span>Red</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #8B4088"></span>
+                    <span>Purple</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #992233"></span>
+                    <span>Dark Red</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="tongue-group">
+                <label class="form-label">Tongue Coating</label>
+                <div class="tongue-options">
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #F0E0D0; border: 1px solid #ddd"></span>
+                    <span>None</span>
+                  </label>
+                  <label class="tongue-opt selected">
+                    <span class="tongue-swatch" style="background: #F5F0E8"></span>
+                    <span>Thin White</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #E8E0D0"></span>
+                    <span>Thick White</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #E8D888"></span>
+                    <span>Yellow</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span class="tongue-swatch" style="background: #C8B878"></span>
+                    <span>Greasy</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="tongue-group">
+                <label class="form-label">Tongue Shape</label>
+                <div class="tongue-options shape-opts">
+                  <label class="tongue-opt">
+                    <span>Normal</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span>Swollen</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span>Thin</span>
+                  </label>
+                  <label class="tongue-opt">
+                    <span>Cracked</span>
+                  </label>
+                  <label class="tongue-opt selected">
+                    <span>Teeth marks</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Pulse Assessment -->
+          <div class="wizard-step" id="symptom-step-4">
+            <p class="wizard-instruction">Select the pulse pattern that feels most familiar:</p>
+
+            <div class="pulse-grid">
+              <label class="pulse-card selected">
+                <input type="radio" name="pulse" checked>
+                <div class="pulse-wave">
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M0,20 Q10,20 15,5 Q20,20 25,20 Q35,20 40,5 Q45,20 50,20 Q60,20 65,5 Q70,20 75,20 Q85,20 90,5 Q95,20 100,20" fill="none" stroke="#2D5016" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="pulse-name">Wiry (弦)</span>
+                <span class="pulse-desc">Taut like a guitar string</span>
+              </label>
+              <label class="pulse-card">
+                <input type="radio" name="pulse">
+                <div class="pulse-wave">
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M0,20 Q12,8 25,20 Q38,32 50,20 Q62,8 75,20 Q88,32 100,20" fill="none" stroke="#6B5344" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="pulse-name">Slippery (滑)</span>
+                <span class="pulse-desc">Smooth, rolling like pearls</span>
+              </label>
+              <label class="pulse-card">
+                <input type="radio" name="pulse">
+                <div class="pulse-wave">
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M0,30 Q25,25 50,28 Q75,25 100,30" fill="none" stroke="#6B5344" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="pulse-name">Deep (沉)</span>
+                <span class="pulse-desc">Only felt with firm pressure</span>
+              </label>
+              <label class="pulse-card">
+                <input type="radio" name="pulse">
+                <div class="pulse-wave">
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M0,10 Q25,15 50,12 Q75,15 100,10" fill="none" stroke="#6B5344" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="pulse-name">Floating (浮)</span>
+                <span class="pulse-desc">Felt with light touch</span>
+              </label>
+              <label class="pulse-card">
+                <input type="radio" name="pulse">
+                <div class="pulse-wave">
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M0,20 Q5,8 10,20 Q15,8 20,20 Q25,8 30,20 Q35,8 40,20 Q45,8 50,20 Q55,8 60,20 Q65,8 70,20 Q75,8 80,20 Q85,8 90,20 Q95,8 100,20" fill="none" stroke="#6B5344" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="pulse-name">Rapid (數)</span>
+                <span class="pulse-desc">Faster than normal (&gt;5 beats/breath)</span>
+              </label>
+              <label class="pulse-card">
+                <input type="radio" name="pulse">
+                <div class="pulse-wave">
+                  <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M0,20 Q15,15 30,20 Q55,25 70,20 Q85,15 100,20" fill="none" stroke="#6B5344" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="pulse-name">Slow (遲)</span>
+                <span class="pulse-desc">Slower than normal (&lt;4 beats/breath)</span>
+              </label>
+            </div>
+
+            <div class="not-sure-link">
+              <button class="text-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 6.5C6 5.5 7 4.5 8 4.5s2 1 2 2c0 1.5-2 1.5-2 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="12" r="0.8" fill="currentColor"/></svg>
+                Not sure? Take simplified 3-question assessment
+              </button>
+            </div>
+          </div>
+
+          <div class="wizard-footer">
+            <button class="btn-secondary" id="wizard-back" onclick="wizardNav(-1)">Back</button>
+            <button class="btn-primary" id="wizard-next" onclick="wizardNav(1)">Next</button>
+          </div>
+          <div class="bottom-spacer"></div>
+        </div>
+      </div>
+
+      <!-- ======== SCREEN 5: DIAGNOSIS RESULT ======== -->
+      <div class="screen" id="screen-diagnosis">
+        <div class="screen-header">
+          <button class="back-btn" onclick="goToScreen('symptoms')">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <h2 class="header-title">Your Diagnosis</h2>
+          <div class="header-spacer"></div>
+        </div>
+        <div class="screen-body scroll-area">
+          <!-- Primary Pattern -->
+          <div class="diagnosis-primary">
+            <div class="diagnosis-badge">
+              <span class="confidence-dot"></span>
+              Strong Match
+            </div>
+            <h2 class="diagnosis-name">Liver Qi Stagnation</h2>
+            <p class="diagnosis-chinese">肝氣鬱結 &middot; Gān Qì Yù Jié</p>
+          </div>
+
+          <!-- Secondary Patterns -->
+          <div class="secondary-patterns">
+            <div class="secondary-chip">
+              <span class="chip-dot moderate"></span>
+              Spleen Qi Deficiency
+              <span class="chip-conf">Moderate</span>
+            </div>
+            <div class="secondary-chip">
+              <span class="chip-dot mild"></span>
+              Blood Stasis
+              <span class="chip-conf">Mild</span>
+            </div>
+          </div>
+
+          <!-- Body Map -->
+          <div class="card body-map-card">
+            <h4 class="card-section-title">Affected Organ Systems</h4>
+            <div class="body-map">
+              <svg viewBox="0 0 200 300" class="body-map-svg">
+                <!-- Simplified body outline -->
+                <ellipse cx="100" cy="40" rx="28" ry="35" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.5"/>
+                <path d="M72,75 L72,180 Q72,200 85,210 L85,290" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.5"/>
+                <path d="M128,75 L128,180 Q128,200 115,210 L115,290" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.5"/>
+                <path d="M72,90 L30,160" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.5"/>
+                <path d="M128,90 L170,160" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.5"/>
+
+                <!-- Organ highlights -->
+                <g class="organ-highlight liver">
+                  <circle cx="85" cy="115" r="16" fill="#4A7C2E" opacity="0.25"/>
+                  <circle cx="85" cy="115" r="16" fill="none" stroke="#4A7C2E" stroke-width="1.5"/>
+                  <text x="85" y="118" text-anchor="middle" fill="#2D5016" font-size="8" font-family="Inter" font-weight="600">肝</text>
+                </g>
+                <g class="organ-highlight spleen">
+                  <circle cx="115" cy="130" r="12" fill="#C8A96E" opacity="0.2"/>
+                  <circle cx="115" cy="130" r="12" fill="none" stroke="#C8A96E" stroke-width="1.2"/>
+                  <text x="115" y="133" text-anchor="middle" fill="#6B5344" font-size="7" font-family="Inter" font-weight="600">脾</text>
+                </g>
+
+                <!-- Labels -->
+                <line x1="101" y1="115" x2="145" y2="105" stroke="#4A7C2E" stroke-width="0.8" opacity="0.6"/>
+                <text x="148" y="108" fill="#2D5016" font-size="8" font-family="Inter" font-weight="500">Liver (Wood)</text>
+                <line x1="127" y1="130" x2="155" y2="140" stroke="#C8A96E" stroke-width="0.8" opacity="0.6"/>
+                <text x="148" y="150" fill="#6B5344" font-size="8" font-family="Inter">Spleen (Earth)</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- What This Means -->
+          <div class="card explanation-card">
+            <h4 class="card-section-title">What This Means For You</h4>
+            <p class="explanation-text">Liver Qi Stagnation occurs when emotional stress or frustration causes your Liver's energy to become "stuck." This affects the smooth flow of Qi throughout your body, often manifesting as irritability, digestive bloating, and a sense of tension — especially along the sides of your body.</p>
+            <p class="explanation-text">The Liver governs the free flow of Qi and emotions. When stagnated, it can also affect the Spleen (digestion), explaining your bloating symptoms.</p>
+          </div>
+
+          <!-- Symptoms Matched -->
+          <div class="card symptoms-matched-card">
+            <h4 class="card-section-title">Symptoms Matched</h4>
+            <div class="matched-list">
+              <div class="matched-item">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" fill="#2D5016" opacity="0.1"/><path d="M5.5 9.5l2 2 5-5" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Bloating after meals</span>
+              </div>
+              <div class="matched-item">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" fill="#2D5016" opacity="0.1"/><path d="M5.5 9.5l2 2 5-5" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Irritability and mood swings</span>
+              </div>
+              <div class="matched-item">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" fill="#2D5016" opacity="0.1"/><path d="M5.5 9.5l2 2 5-5" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Difficulty falling asleep</span>
+              </div>
+              <div class="matched-item">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" fill="#2D5016" opacity="0.1"/><path d="M5.5 9.5l2 2 5-5" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Wiry pulse pattern</span>
+              </div>
+              <div class="matched-item">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" fill="#2D5016" opacity="0.1"/><path d="M5.5 9.5l2 2 5-5" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Pale tongue with teeth marks</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="diagnosis-ctas">
+            <button class="btn-primary full-width" onclick="goToScreen('formula')">
+              See Recommended Formula
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="btn-secondary full-width">Learn More About This Pattern</button>
+          </div>
+          <div class="bottom-spacer"></div>
+        </div>
+      </div>
+
+      <!-- ======== SCREEN 6: HERBAL FORMULA DETAIL ======== -->
+      <div class="screen" id="screen-formula">
+        <div class="screen-header">
+          <button class="back-btn" onclick="goToScreen('diagnosis')">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <h2 class="header-title">Formula Detail</h2>
+          <button class="icon-btn">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M14 3l3 3-9 9H5v-3L14 3z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </button>
+        </div>
+        <div class="screen-body scroll-area">
+          <!-- Formula Header -->
+          <div class="formula-header">
+            <div class="formula-icon-large">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="14" y="4" width="20" height="12" rx="3" stroke="#2D5016" stroke-width="1.5" fill="none"/><path d="M12 16 L8 44 h32 L36 16" stroke="#2D5016" stroke-width="1.5" fill="#F5ECD7"/><path d="M18 24 Q24 20 30 24 Q24 28 18 24" stroke="#7A9E5F" stroke-width="1" fill="#7A9E5F" opacity="0.3"/><path d="M16 30 Q24 26 32 30" stroke="#7A9E5F" stroke-width="1" fill="none" opacity="0.5"/></svg>
+            </div>
+            <h2 class="formula-name-en">Free & Easy Wanderer</h2>
+            <p class="formula-name-cn">逍遙散</p>
+            <p class="formula-name-py">Xiāo Yáo Sǎn</p>
+          </div>
+
+          <!-- Rationale -->
+          <div class="card rationale-card">
+            <h4 class="card-section-title">Why This Formula?</h4>
+            <p class="explanation-text">Xiao Yao San is the classic formula for Liver Qi Stagnation with Spleen involvement. It soothes the Liver, strengthens the Spleen, and nourishes Blood — addressing both your primary and secondary patterns simultaneously.</p>
+          </div>
+
+          <!-- Ingredients -->
+          <div class="card ingredients-card">
+            <h4 class="card-section-title">Ingredients</h4>
+
+            <div class="ingredient-item expanded">
+              <div class="ingredient-header">
+                <div class="ingredient-role-dot chief"></div>
+                <div class="ingredient-info">
+                  <span class="ingredient-cn">柴胡</span>
+                  <span class="ingredient-name">Chai Hu (Bupleurum)</span>
+                </div>
+                <span class="ingredient-role">Chief</span>
+                <span class="ingredient-amount">9g</span>
+              </div>
+              <div class="ingredient-detail">
+                <p><em>Radix Bupleuri</em> — Spreads Liver Qi, relieves stagnation, and lifts the Yang Qi. The primary herb for soothing the Liver.</p>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="ingredient-header">
+                <div class="ingredient-role-dot deputy"></div>
+                <div class="ingredient-info">
+                  <span class="ingredient-cn">當歸</span>
+                  <span class="ingredient-name">Dang Gui (Angelica)</span>
+                </div>
+                <span class="ingredient-role">Deputy</span>
+                <span class="ingredient-amount">9g</span>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="ingredient-header">
+                <div class="ingredient-role-dot deputy"></div>
+                <div class="ingredient-info">
+                  <span class="ingredient-cn">白芍</span>
+                  <span class="ingredient-name">Bai Shao (White Peony)</span>
+                </div>
+                <span class="ingredient-role">Deputy</span>
+                <span class="ingredient-amount">9g</span>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="ingredient-header">
+                <div class="ingredient-role-dot assistant"></div>
+                <div class="ingredient-info">
+                  <span class="ingredient-cn">白朮</span>
+                  <span class="ingredient-name">Bai Zhu (Atractylodes)</span>
+                </div>
+                <span class="ingredient-role">Assistant</span>
+                <span class="ingredient-amount">9g</span>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="ingredient-header">
+                <div class="ingredient-role-dot assistant"></div>
+                <div class="ingredient-info">
+                  <span class="ingredient-cn">茯苓</span>
+                  <span class="ingredient-name">Fu Ling (Poria)</span>
+                </div>
+                <span class="ingredient-role">Assistant</span>
+                <span class="ingredient-amount">9g</span>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="ingredient-header">
+                <div class="ingredient-role-dot envoy"></div>
+                <div class="ingredient-info">
+                  <span class="ingredient-cn">甘草</span>
+                  <span class="ingredient-name">Gan Cao (Licorice)</span>
+                </div>
+                <span class="ingredient-role">Envoy</span>
+                <span class="ingredient-amount">4.5g</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preparation Tabs -->
+          <div class="card prep-card">
+            <h4 class="card-section-title">Preparation</h4>
+            <div class="prep-tabs">
+              <button class="prep-tab active">Decoction</button>
+              <button class="prep-tab">Powder</button>
+              <button class="prep-tab">Patent Pill</button>
+            </div>
+            <div class="prep-content">
+              <div class="prep-step">
+                <span class="prep-num">1</span>
+                <p>Soak herbs in 3 cups of cold water for 30 minutes.</p>
+              </div>
+              <div class="prep-step">
+                <span class="prep-num">2</span>
+                <p>Bring to a boil, then simmer on low heat for 25–30 minutes until reduced to 1 cup.</p>
+              </div>
+              <div class="prep-step">
+                <span class="prep-num">3</span>
+                <p>Strain and drink warm. Can be re-decocted once with 2 cups water.</p>
+              </div>
+              <div class="prep-timing">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#6B5344" stroke-width="1.2" fill="none"/><path d="M8 4v4l2.5 2.5" stroke="#6B5344" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <span>Take 30 minutes before meals, twice daily (AM & PM)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dosage -->
+          <div class="card dosage-card">
+            <h4 class="card-section-title">Dosage Guidance</h4>
+            <p class="explanation-text">Standard adult dose: 1 cup (200ml) twice daily. Adjust for body weight — reduce by 20% for adults under 50kg. Course: 2–4 weeks, then reassess.</p>
+          </div>
+
+          <!-- Safety Panel -->
+          <div class="safety-panel">
+            <div class="safety-header">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L1 18h18L10 2z" stroke="#B85C38" stroke-width="1.5" fill="none"/><path d="M10 8v4M10 14.5v.5" stroke="#B85C38" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <h4>Safety Check</h4>
+            </div>
+
+            <div class="safety-item warning">
+              <div class="safety-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L0.5 14.5h15L8 1z" fill="#B85C38" opacity="0.15"/><path d="M8 6v3.5M8 11.5v.5" stroke="#B85C38" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <p class="safety-title">Drug Interaction Detected</p>
+                <p class="safety-desc">Gan Cao (Licorice) may interact with <strong>Metformin</strong>. Monitor blood glucose levels closely. Consult your prescribing physician.</p>
+              </div>
+            </div>
+
+            <div class="safety-item ok">
+              <div class="safety-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="#2D5016" opacity="0.1"/><path d="M5 8.5l2 2 4-4" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="safety-title">No Allergy Conflicts</p>
+                <p class="safety-desc">None of the ingredients match your listed allergies.</p>
+              </div>
+            </div>
+
+            <div class="safety-item caution">
+              <div class="safety-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="#C8A96E" opacity="0.2"/><path d="M8 5v4M8 11v.5" stroke="#C8A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <p class="safety-title">Contraindication Note</p>
+                <p class="safety-desc">Not recommended during pregnancy. Discontinue if experiencing significant heat symptoms.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="formula-actions">
+            <button class="btn-primary full-width">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12 2l2 2-8 8H4v-2L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+              Save Formula
+            </button>
+            <button class="btn-secondary full-width">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M8 4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+              Share with Practitioner
+            </button>
+          </div>
+          <div class="bottom-spacer"></div>
+        </div>
+      </div>
+
+      <!-- ======== SCREEN 7: HISTORY & TRACKING ======== -->
+      <div class="screen" id="screen-history">
+        <div class="screen-header">
+          <button class="back-btn" onclick="goToScreen('home')">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <h2 class="header-title">History & Tracking</h2>
+          <button class="icon-btn" title="Export PDF">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 14l4 4 4-4M10 18V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 8V4a1 1 0 011-1h12a1 1 0 011 1v4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </button>
+        </div>
+        <div class="screen-body scroll-area">
+          <!-- Trend Graph -->
+          <div class="card trend-card">
+            <h4 class="card-section-title">Symptom Trends</h4>
+            <div class="trend-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#2D5016"></span>Bloating</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#B85C38"></span>Mood</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#C8A96E"></span>Sleep</span>
+            </div>
+            <div class="trend-chart">
+              <svg viewBox="0 0 300 120" class="chart-svg">
+                <!-- Grid lines -->
+                <line x1="40" y1="10" x2="40" y2="100" stroke="#E8E0D0" stroke-width="0.5"/>
+                <line x1="40" y1="100" x2="290" y2="100" stroke="#E8E0D0" stroke-width="0.5"/>
+                <line x1="40" y1="55" x2="290" y2="55" stroke="#E8E0D0" stroke-width="0.5" stroke-dasharray="4"/>
+                <line x1="40" y1="10" x2="290" y2="10" stroke="#E8E0D0" stroke-width="0.5" stroke-dasharray="4"/>
+
+                <!-- Y axis labels -->
+                <text x="30" y="104" text-anchor="end" fill="#6B5344" font-size="8" font-family="Inter">1</text>
+                <text x="30" y="59" text-anchor="end" fill="#6B5344" font-size="8" font-family="Inter">3</text>
+                <text x="30" y="14" text-anchor="end" fill="#6B5344" font-size="8" font-family="Inter">5</text>
+
+                <!-- X axis labels -->
+                <text x="60" y="115" text-anchor="middle" fill="#6B5344" font-size="7" font-family="Inter">Jan</text>
+                <text x="122" y="115" text-anchor="middle" fill="#6B5344" font-size="7" font-family="Inter">Feb</text>
+                <text x="184" y="115" text-anchor="middle" fill="#6B5344" font-size="7" font-family="Inter">Mar</text>
+                <text x="248" y="115" text-anchor="middle" fill="#6B5344" font-size="7" font-family="Inter">Mar 15</text>
+
+                <!-- Bloating line -->
+                <path d="M60,28 Q90,35 122,46 Q150,50 184,55 Q215,58 248,64" fill="none" stroke="#2D5016" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="60" cy="28" r="3" fill="#2D5016"/>
+                <circle cx="122" cy="46" r="3" fill="#2D5016"/>
+                <circle cx="184" cy="55" r="3" fill="#2D5016"/>
+                <circle cx="248" cy="64" r="3" fill="#2D5016"/>
+
+                <!-- Mood line -->
+                <path d="M60,19 Q90,28 122,37 Q150,46 184,46 Q215,50 248,55" fill="none" stroke="#B85C38" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="60" cy="19" r="3" fill="#B85C38"/>
+                <circle cx="122" cy="37" r="3" fill="#B85C38"/>
+                <circle cx="184" cy="46" r="3" fill="#B85C38"/>
+                <circle cx="248" cy="55" r="3" fill="#B85C38"/>
+
+                <!-- Sleep line -->
+                <path d="M60,37 Q90,42 122,55 Q150,55 184,64 Q215,64 248,73" fill="none" stroke="#C8A96E" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="60" cy="37" r="3" fill="#C8A96E"/>
+                <circle cx="122" cy="55" r="3" fill="#C8A96E"/>
+                <circle cx="184" cy="64" r="3" fill="#C8A96E"/>
+                <circle cx="248" cy="73" r="3" fill="#C8A96E"/>
+              </svg>
+            </div>
+            <p class="trend-note">All symptoms improving since starting Xiao Yao San</p>
+          </div>
+
+          <!-- Timeline -->
+          <h4 class="section-heading">Assessment History</h4>
+
+          <div class="timeline">
+            <div class="timeline-item" onclick="goToScreen('diagnosis')">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">March 15, 2026</div>
+                <div class="card timeline-card">
+                  <h4 class="timeline-pattern">Liver Qi Stagnation</h4>
+                  <p class="timeline-formula">Rx: Xiao Yao San</p>
+                  <div class="timeline-score">
+                    <span class="score-label">Symptom Score:</span>
+                    <div class="score-bar"><div class="score-fill" style="width:60%"></div></div>
+                    <span class="score-value">3.0/5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">February 20, 2026</div>
+                <div class="card timeline-card">
+                  <h4 class="timeline-pattern">Liver Qi Stagnation + Spleen Qi Deficiency</h4>
+                  <p class="timeline-formula">Rx: Xiao Yao San (modified)</p>
+                  <div class="timeline-score">
+                    <span class="score-label">Symptom Score:</span>
+                    <div class="score-bar"><div class="score-fill" style="width:76%"></div></div>
+                    <span class="score-value">3.8/5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">January 18, 2026</div>
+                <div class="card timeline-card">
+                  <h4 class="timeline-pattern">Liver Qi Stagnation + Blood Deficiency</h4>
+                  <p class="timeline-formula">Rx: Si Wu Tang + Chai Hu</p>
+                  <div class="timeline-score">
+                    <span class="score-label">Symptom Score:</span>
+                    <div class="score-bar"><div class="score-fill" style="width:88%"></div></div>
+                    <span class="score-value">4.4/5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compare button -->
+          <button class="btn-secondary full-width compare-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Compare Two Assessments
+          </button>
+
+          <div class="bottom-spacer-nav"></div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+          <button class="nav-item" onclick="goToScreen('home')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 8.5L11 2l8 6.5V19a1 1 0 01-1 1H4a1 1 0 01-1-1V8.5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 20v-7h6v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Home</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('symptoms')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v6M11 14v6M2 11h6M14 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="11" cy="11" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span>Assess</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('formula')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8 2h6v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V2z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M6 8l-1.5 11h13L16 8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span>Formulas</span>
+          </button>
+          <button class="nav-item active">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M11 6v5l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>History</span>
+          </button>
+          <button class="nav-item" onclick="goToScreen('profile')">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 20c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            <span>Profile</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ======== SCREEN 8: DISCLAIMER ======== -->
+      <div class="screen" id="screen-disclaimer">
+        <div class="disclaimer-overlay">
+          <div class="disclaimer-modal">
+            <div class="disclaimer-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="22" stroke="#C8A96E" stroke-width="1.5" fill="#FAF6EE"/>
+                <path d="M24 14v12" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="24" cy="32" r="2" fill="#2D5016"/>
+              </svg>
+            </div>
+            <h2 class="disclaimer-title">Important Information</h2>
+            <div class="disclaimer-text">
+              <p>TCM Wisdom is an <strong>educational tool</strong> designed to help you explore Traditional Chinese Medicine concepts.</p>
+              <p>It <strong>does not</strong> provide medical diagnosis or replace consultation with a licensed TCM practitioner or healthcare provider.</p>
+              <p><strong>Always consult a qualified professional</strong> before starting any herbal regimen, especially if you are pregnant, nursing, taking medications, or have existing health conditions.</p>
+            </div>
+            <div class="disclaimer-privacy">
+              <div class="privacy-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="8" rx="1.5" stroke="#2D5016" stroke-width="1.2" fill="none"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#2D5016" stroke-width="1.2" fill="none"/></svg>
+                <span>Health data stored locally on your device</span>
+              </div>
+              <div class="privacy-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 4 4.5.5-3.25 3 .75 4.5L8 11l-4 2 .75-4.5L1.5 5.5 6 5l2-4z" stroke="#2D5016" stroke-width="1.2" fill="none"/></svg>
+                <span>No data sold to third parties — ever</span>
+              </div>
+              <div class="privacy-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#2D5016" stroke-width="1.2" fill="none"/><path d="M8 5v3l2 2" stroke="#2D5016" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <span>Optional encrypted cloud backup (opt-in)</span>
+              </div>
+            </div>
+            <label class="disclaimer-checkbox">
+              <input type="checkbox" id="disclaimer-check" onchange="toggleDisclaimer()">
+              <span class="custom-checkbox"></span>
+              <span>I understand and agree to proceed</span>
+            </label>
+            <button class="btn-primary full-width" id="disclaimer-proceed" disabled onclick="goToScreen('profile')">
+              Continue to Profile Setup
+            </button>
+            <p class="disclaimer-footer">Accessible anytime from Settings &gt; Legal</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end phone-screen -->
+    <div class="phone-home-indicator"></div>
+  </div><!-- end phone-frame -->
+
+  <!-- ============================================ -->
+  <!-- DEVELOPER HANDOFF PANEL                      -->
+  <!-- ============================================ -->
+  <div class="handoff-panel" id="handoff-panel">
+    <div class="handoff-toggle" onclick="toggleHandoff()">
+      <span>Developer Handoff &amp; Specs</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="handoff-arrow"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="handoff-content" id="handoff-content">
+
+      <section class="handoff-section">
+        <h3>Design Tokens</h3>
+        <div class="token-grid">
+          <div class="token-item">
+            <div class="token-swatch" style="background:#2D5016"></div>
+            <code>--primary: #2D5016</code><br><small>Deep Forest Green</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#7A9E5F"></div>
+            <code>--primary-light: #7A9E5F</code><br><small>Sage</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#F5ECD7"></div>
+            <code>--secondary: #F5ECD7</code><br><small>Warm Beige</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#C8A96E"></div>
+            <code>--secondary-dark: #C8A96E</code><br><small>Sand</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#B85C38"></div>
+            <code>--accent: #B85C38</code><br><small>Terracotta (CTAs)</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#FAF6EE"></div>
+            <code>--bg: #FAF6EE</code><br><small>Cream</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#2C2C2C"></div>
+            <code>--text: #2C2C2C</code><br><small>Charcoal</small>
+          </div>
+          <div class="token-item">
+            <div class="token-swatch" style="background:#6B5344"></div>
+            <code>--text-muted: #6B5344</code><br><small>Muted Brown</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Typography</h3>
+        <table class="spec-table">
+          <tr><th>Element</th><th>Font</th><th>Size</th><th>Weight</th><th>Line Height</th></tr>
+          <tr><td>H1 / Screen Title</td><td>Playfair Display</td><td>24px</td><td>700</td><td>1.3</td></tr>
+          <tr><td>H2 / Section</td><td>Playfair Display</td><td>20px</td><td>600</td><td>1.3</td></tr>
+          <tr><td>H3 / Card Title</td><td>Inter</td><td>16px</td><td>600</td><td>1.4</td></tr>
+          <tr><td>Body</td><td>Inter</td><td>14px</td><td>400</td><td>1.6</td></tr>
+          <tr><td>Caption / Label</td><td>Inter</td><td>12px</td><td>500</td><td>1.4</td></tr>
+          <tr><td>Chinese Accent</td><td>Noto Serif SC</td><td>18px</td><td>400</td><td>1.4</td></tr>
+          <tr><td>Min Body Text</td><td>Inter</td><td>16px*</td><td>400</td><td>1.6</td></tr>
+        </table>
+        <p class="spec-note">* 16px minimum for accessibility compliance (WCAG AA)</p>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Spacing & Layout</h3>
+        <table class="spec-table">
+          <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+          <tr><td>--space-xs</td><td>4px</td><td>Inner padding, icon gaps</td></tr>
+          <tr><td>--space-sm</td><td>8px</td><td>Compact spacing</td></tr>
+          <tr><td>--space-md</td><td>16px</td><td>Standard padding / margins</td></tr>
+          <tr><td>--space-lg</td><td>24px</td><td>Section spacing</td></tr>
+          <tr><td>--space-xl</td><td>32px</td><td>Screen padding top/bottom</td></tr>
+          <tr><td>--radius-sm</td><td>8px</td><td>Buttons, chips, pills</td></tr>
+          <tr><td>--radius-md</td><td>12px</td><td>Cards</td></tr>
+          <tr><td>--radius-lg</td><td>16px</td><td>Modals, sheets</td></tr>
+          <tr><td>--shadow-card</td><td>0 2px 8px rgba(0,0,0,0.06)</td><td>Standard card elevation (2-4dp)</td></tr>
+        </table>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Component Library</h3>
+        <table class="spec-table">
+          <tr><th>Component</th><th>Variants</th><th>Notes</th></tr>
+          <tr><td>Button Primary</td><td>Default, Disabled, Loading</td><td>bg: --accent (#B85C38), text: white, h: 48px, radius: 8px</td></tr>
+          <tr><td>Button Secondary</td><td>Default, Disabled</td><td>border: 1.5px --primary, text: --primary, h: 48px</td></tr>
+          <tr><td>Card</td><td>Standard, Interactive, Highlight</td><td>bg: white, radius: 12px, shadow: card, padding: 16px</td></tr>
+          <tr><td>Input Field</td><td>Default, Focus, Error, Disabled</td><td>h: 48px, border: 1.5px #D4C8B8, focus: --primary</td></tr>
+          <tr><td>Tag/Chip</td><td>Removable, Static, Herb</td><td>bg: --secondary, text: --text-muted, radius: 20px</td></tr>
+          <tr><td>Bottom Nav</td><td>5 items, active state</td><td>h: 64px + safe area, active: --primary, inactive: --text-muted</td></tr>
+          <tr><td>Progress Bar</td><td>Wizard steps, Score bar</td><td>h: 4px, bg: #E8E0D0, fill: --primary</td></tr>
+          <tr><td>Quiz Option</td><td>Unselected, Selected</td><td>Radio with custom style, selected: --primary border</td></tr>
+          <tr><td>Safety Panel</td><td>Warning, OK, Caution</td><td>Always visible, icon-coded severity levels</td></tr>
+          <tr><td>Timeline Item</td><td>Active, Past</td><td>Left-line connector, dot indicator, card content</td></tr>
+        </table>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Micro-Interactions</h3>
+        <table class="spec-table">
+          <tr><th>Element</th><th>Animation</th><th>Duration</th><th>Easing</th></tr>
+          <tr><td>Yin-Yang symbol</td><td>Slow rotation (continuous)</td><td>20s per revolution</td><td>linear</td></tr>
+          <tr><td>Qi lines (onboarding)</td><td>Sine wave flow, opacity pulse</td><td>3–4s loop</td><td>ease-in-out</td></tr>
+          <tr><td>Five Elements wheel</td><td>Scale-in staggered per node</td><td>600ms + 100ms stagger</td><td>cubic-bezier(0.34, 1.56, 0.64, 1)</td></tr>
+          <tr><td>Qi particles (body)</td><td>SVG animateMotion along paths</td><td>3–4.5s varied</td><td>linear</td></tr>
+          <tr><td>Breathing ring (avatar)</td><td>Scale 1→1.15, opacity pulse</td><td>4s loop</td><td>ease-in-out</td></tr>
+          <tr><td>Onboarding slides</td><td>Horizontal swipe/translate</td><td>400ms</td><td>ease-out</td></tr>
+          <tr><td>Card press/tap</td><td>Scale down to 0.98</td><td>100ms</td><td>ease</td></tr>
+          <tr><td>Screen transitions</td><td>Fade + translateX(30px)</td><td>300ms</td><td>ease-out</td></tr>
+          <tr><td>Progress bar fill</td><td>Width transition</td><td>500ms</td><td>ease-out</td></tr>
+          <tr><td>Disclaimer checkbox</td><td>Scale bounce on check</td><td>300ms</td><td>spring</td></tr>
+        </table>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Navigation Flow</h3>
+        <pre class="flow-diagram">
+┌─────────────┐
+│  Onboarding │──→ skip ──→ Disclaimer
+│  (3 slides) │              Modal
+└──────┬──────┘                │
+       │ "Start"               │ "I understand"
+       ▼                       ▼
+┌─────────────┐        ┌─────────────┐
+│  Disclaimer │───────→│   Profile    │
+│   Modal     │        │   Setup     │
+└─────────────┘        └──────┬──────┘
+                              │ "Save"
+                              ▼
+                       ┌─────────────┐
+              ┌────────│    HOME     │────────┐
+              │        │  Dashboard  │        │
+              │        └──────┬──────┘        │
+              │               │               │
+      ┌───────▼───┐    ┌─────▼─────┐   ┌─────▼─────┐
+      │  History  │    │  Symptom  │   │  Formula  │
+      │  Tracking │    │  Wizard   │   │  Library  │
+      └───────────┘    │ (4 steps) │   └───────────┘
+                       └─────┬─────┘         ▲
+                             │               │
+                       ┌─────▼─────┐         │
+                       │ Diagnosis │─────────┘
+                       │  Result   │ "See Formula"
+                       └───────────┘
+
+Bottom Nav: Home | Assess | Formulas | History | Profile
+(persistent on Home, History screens)
+        </pre>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Screen-by-Screen Dev Notes</h3>
+        <div class="dev-note">
+          <h4>1. Onboarding</h4>
+          <ul>
+            <li>Horizontal paged scroll (UIPageViewController / ViewPager2)</li>
+            <li>Yin-Yang SVG: use CSS rotate animation, 20s duration</li>
+            <li>Five Elements: staggered scale-in on slide entry</li>
+            <li>Qi particles: SVG &lt;animateMotion&gt; or Lottie</li>
+            <li>Store "onboarding_completed" flag in local storage</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>2. Profile Setup</h4>
+          <ul>
+            <li>Tag input: autocomplete search from allergy database</li>
+            <li>Photo upload: camera intent for medication photos</li>
+            <li>Constitution quiz: 3 questions → scoring matrix → Yang Deficiency / Yin Deficiency / Qi Deficiency / Balanced</li>
+            <li>Persist to local SQLite / Realm database</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>3. Home Dashboard</h4>
+          <ul>
+            <li>Greeting dynamically set: morning/afternoon/evening based on device time</li>
+            <li>Constitution card pulls latest diagnosis result</li>
+            <li>Seasonal tip: map current date to TCM season (Spring=Wood, Summer=Fire, Late Summer=Earth, Autumn=Metal, Winter=Water)</li>
+            <li>Bottom nav: 5-item tab bar, FAB-less design</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>4. Symptom Wizard</h4>
+          <ul>
+            <li>4-step wizard with back-preserving navigation state</li>
+            <li>Step 2 is dynamic: generates symptom detail cards based on Step 1 selections</li>
+            <li>Tongue photo: integrate ML model (TFLite/CoreML) for classification</li>
+            <li>Pulse cards: illustrative only — no sensor integration</li>
+            <li>All selections persisted in memory until submission</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>5. Diagnosis Result</h4>
+          <ul>
+            <li>Pattern engine: weighted symptom scoring against 50+ TCM patterns</li>
+            <li>Confidence: Strong (&gt;75%), Moderate (50-75%), Mild (&lt;50%)</li>
+            <li>Body map: SVG with programmatic organ highlighting</li>
+            <li>Five Elements color-coding: Wood=#4A7C2E, Fire=#C44B2B, Earth=#C8A96E, Metal=#8B8B8B, Water=#2B5EA7</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>6. Formula Detail</h4>
+          <ul>
+            <li>Ingredient cards: expandable accordion pattern</li>
+            <li>Roles: Chief (君), Deputy (臣), Assistant (佐), Envoy (使)</li>
+            <li>Safety checker: cross-reference user.medications against herb-drug interaction DB</li>
+            <li>Allergy check: cross-reference user.allergies against ingredient properties</li>
+            <li>Preparation tabs: segmented control, content swap</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>7. History & Tracking</h4>
+          <ul>
+            <li>Timeline: reverse-chronological, lazy-loaded</li>
+            <li>Trend chart: use lightweight charting lib (e.g., Victory Native, MPAndroidChart)</li>
+            <li>Comparison mode: side-by-side scroll with synced highlighting</li>
+            <li>PDF export: generate on-device using template + data injection</li>
+          </ul>
+        </div>
+        <div class="dev-note">
+          <h4>8. Disclaimer</h4>
+          <ul>
+            <li>Modal overlay — blocks all interaction until acknowledged</li>
+            <li>Shown once before first diagnosis, gate stored as boolean flag</li>
+            <li>Checkbox required to enable "Continue" button</li>
+            <li>Re-accessible from Settings &gt; Legal at any time</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="handoff-section">
+        <h3>Accessibility Requirements</h3>
+        <ul class="a11y-list">
+          <li>Minimum 16px body text (already enforced in design tokens)</li>
+          <li>All color pairs meet WCAG AA contrast ratio (4.5:1 minimum)</li>
+          <li>All interactive elements have minimum 44x44pt touch targets</li>
+          <li>VoiceOver / TalkBack: all images have descriptive alt text</li>
+          <li>Semantic heading hierarchy maintained per screen</li>
+          <li>Focus order follows visual layout (top-to-bottom, left-to-right)</li>
+          <li>Motion: respect "Reduce Motion" system setting — disable Qi animations</li>
+          <li>Dynamic Type / font scaling support up to 200%</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<button class="lang-fab" onclick="showLanguageModal()" title="Language">🌐</button>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</body>
+</html>
