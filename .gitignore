@@ -1,2 +1,5 @@
 node_modules/
 .claude/
+icons/gen.js
+icons/generate.html
+icons/generate-icons.js
